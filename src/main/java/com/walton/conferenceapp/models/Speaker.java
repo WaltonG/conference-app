@@ -1,9 +1,7 @@
 package com.walton.conferenceapp.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity(name = "speakers")
 public class Speaker {
@@ -15,6 +13,8 @@ public class Speaker {
     private String last_name;
     private String title;
 
+    @ManyToMany(mappedBy = "speakers")
+    private List<Session> sessions;
     public Speaker() {
     }
 
@@ -68,4 +68,12 @@ public class Speaker {
 
     private String company;
     private String speaker_bio;
+
+    public List<Session> getSessions() {
+        return sessions;
+    }
+
+    public void setSessions(List<Session> sessions) {
+        this.sessions = sessions;
+    }
 }
